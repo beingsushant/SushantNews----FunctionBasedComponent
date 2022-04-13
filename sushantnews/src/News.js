@@ -95,10 +95,10 @@ export default class News extends Component {
                         </div>
                     })}
                 </div>
-                <div className="container d-flex justify-content-between">
+                {/* <div className="container d-flex justify-content-between">
                      <button type="button" disabled={this.state.page<=1?true:false} onClick={this.handleclickprev} className="btn" style={{ display: 'flex', marginRight: '14px', marginBottom: '10px' }}>Prev</button>
                      <button type="button" disabled={this.state.page>=this.state.totalPages?true:false} onClick={this.handleclicknext} className="btn" style={{ display: 'flex', marginRight: '14px', marginBottom: '10px' }}>Next</button>
-                </div>
+                </div> */}
                 </InfiniteScroll>
             </div >
         )
