@@ -1,0 +1,76 @@
+.nav-item {
+    color: white;
+    display: block;
+    font-weight: bold;
+    align-self: center;
+    text-decoration: none;
+    margin-right: 1rem;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    height: 55px;
+}
+
+.navbar-brand {
+    margin-right: 0px;
+}
+
+.btn {
+    background-color: rgb(255, 153, 0);
+    color: white;
+    border: none;
+}
+
+.btn1 {
+    background-color: rgb(255, 153, 0);
+    color: white;
+    border: none;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 58%;
+    margin: auto;
+}
+
+.btn:disabled{
+    background-color: rgb(255, 153, 0);
+}
+
+img {
+    height: 190px;
+}
+
+.btn:hover {
+    background-color: rgb(224, 108, 0);
+}
+
+.nav-item :hover{
+    background-color: rgb(255, 153, 0);
+    color: white;
+    font-weight: bold;
+    align-self: center;
+    text-decoration: none;
+    height: 55px;
+}
+
+.list {
+    color: white;
+    font-weight: bold;
+    align-self: center;
+    text-decoration: none;
+    width: 100%;
+    display: block;
+	line-height: 55px;
+	padding: 0 7px;
+}
+
+.list :hover{
+    background-color: rgb(255, 153, 0);
+    color: white;
+    font-weight: bold;
+    align-self: center;
+    text-decoration: none;
+    height: 100%;
+}

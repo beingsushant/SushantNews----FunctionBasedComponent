@@ -1,0 +1,37 @@
+.container2 {
+    display: flex;
+    align-self: center;
+    margin: auto;
+    justify-content: center;
+    margin: 17px 0px 17px 0px;
+    background-color: rgb(255, 153, 0);
+    color: white;
+    font-weight: bold;
+    margin-top: 70px;
+}
+
+.btn {
+    background-color: rgb(255, 153, 0);
+    color: white;
+    border: none;
+}
+
+.btn1 {
+    background-color: rgb(255, 153, 0);
+    color: white;
+    border: none;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 58%;
+    margin: auto;
+}
+
+.btn:disabled{
+    background-color: rgb(255, 153, 0);
+}
+
+.btn:hover {
+    background-color: rgb(224, 108, 0);
+    color: white;
+}
