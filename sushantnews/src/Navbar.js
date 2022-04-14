@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import './Navbar.css'
 
-export default class Navbar extends Component {
-    render() {
+const Navbar = ()=> {
         return (
             <div>
                 <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
@@ -48,5 +47,6 @@ export default class Navbar extends Component {
                 </nav>
             </div>
         )
-    }
 }
+
+export default Navbar;

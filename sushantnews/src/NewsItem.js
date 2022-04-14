@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Navbar.css';
 
-export default class NewsItem extends Component {
-    render() {
-        let {key, title,description,imageurl,url} = this.props;
+const NewsItem = (props)=> {
+        let {key, title,description,imageurl,url} = props;
         return (
             <div>
                 <div className="card" style={{ width: '19rem' }}>
@@ -17,5 +16,6 @@ export default class NewsItem extends Component {
                 </div>
             </div>
         )
-    }
 }
+
+export default NewsItem;
