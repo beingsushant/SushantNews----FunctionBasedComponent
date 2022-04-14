@@ -17,16 +17,20 @@ const News = (props) => {
 
     const updateNews = async () => {
         setLoading(true);
+        props.setProgress(20);
         let url = `https://newsapi.org/v2/top-headlines?country=us&category=${props.category}&apiKey=c2d923d97950457ea05e70112b869de1&page=${page}&pageSize=20`;
         let data = await fetch(url);
+        props.setProgress(40);
         let parsedData = await data.json()
         console.log(parsedData); 
         let totalPages0=Math.ceil(parsedData.totalResults/20);
         setLoading(false);
+        props.setProgress(80);
         setArticles(parsedData.articles);
         setTotalPages(totalPages0);
         console.log("-------TotalPageMount----");
         console.log(totalPages);
+        props.setProgress(100);
         console.log("-------Page:----");
         console.log(page);
     }
@@ -40,37 +44,43 @@ const News = (props) => {
 
         setPage(page+1);
         setLoading(true);
+        props.setProgress(20);
         let url = `https://newsapi.org/v2/top-headlines?country=us&category=${props.category}&apiKey=c2d923d97950457ea05e70112b869de1&page=${page+1}&pageSize=20`;
         let data = await fetch(url);
         console.log(url);
+        props.setProgress(40);
         let parsedData = await data.json()
         console.log(parsedData); 
         let totalPages0=Math.ceil(parsedData.totalResults/20);
         setLoading(false);
+        props.setProgress(80);
         setArticles(parsedData.articles);
         setTotalPages(totalPages0);
         console.log("-------TotalPageMount----");
         console.log(totalPages);
-
+        props.setProgress(100);
         console.log("-------Pagenext----");
         console.log(page);
     }
 
     const handleclickprev = async () => {
         console.log("prev button clicked");
+        props.setProgress(20);
         setPage(page-1);
         setLoading(true);
         let url = `https://newsapi.org/v2/top-headlines?country=us&category=${props.category}&apiKey=c2d923d97950457ea05e70112b869de1&page=${page-1}&pageSize=20`;
         let data = await fetch(url);
+        props.setProgress(40);
         let parsedData = await data.json()
         console.log(parsedData); 
         let totalPages0=Math.ceil(parsedData.totalResults/20);
         setLoading(false);
+        props.setProgress(80);
         setArticles(parsedData.articles);
         setTotalPages(totalPages0);
         console.log("-------TotalPageMount----");
         console.log(totalPages);
-
+        props.setProgress(100);
         console.log("-------Pageprev----");
         console.log(page);
     }
