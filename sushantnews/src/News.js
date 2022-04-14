@@ -18,21 +18,22 @@ const News = (props) => {
     const updateNews = async () => {
         setLoading(true);
         props.setProgress(20);
-        let url = `https://newsapi.org/v2/top-headlines?country=us&category=${props.category}&apiKey=c2d923d97950457ea05e70112b869de1&page=${page}&pageSize=20`;
+        let url = `https://newsapi.org/v2/top-headlines?country=in&category=${props.category}&apiKey=c2d923d97950457ea05e70112b869de1&page=${page}&pageSize=20`;
         let data = await fetch(url);
         props.setProgress(40);
         let parsedData = await data.json()
         console.log(parsedData); 
         let totalPages0=Math.ceil(parsedData.totalResults/20);
-        setLoading(false);
         props.setProgress(80);
         setArticles(parsedData.articles);
         setTotalPages(totalPages0);
+        setTotalResults(parsedData.totalResults);
         console.log("-------TotalPageMount----");
         console.log(totalPages);
         props.setProgress(100);
-        console.log("-------Page:----");
-        console.log(page);
+        console.log("-------articlesLength----");
+        console.log(articles.length);
+        setLoading(false);
     }
      
     useEffect(() => {
@@ -40,66 +41,28 @@ const News = (props) => {
         // eslint-disable-next-line
     }, [])
 
-    const handleclicknext = async () => {
-
-        setPage(page+1);
-        setLoading(true);
-        props.setProgress(20);
-        let url = `https://newsapi.org/v2/top-headlines?country=us&category=${props.category}&apiKey=c2d923d97950457ea05e70112b869de1&page=${page+1}&pageSize=20`;
-        let data = await fetch(url);
-        console.log(url);
-        props.setProgress(40);
-        let parsedData = await data.json()
-        console.log(parsedData); 
-        let totalPages0=Math.ceil(parsedData.totalResults/20);
-        setLoading(false);
-        props.setProgress(80);
-        setArticles(parsedData.articles);
-        setTotalPages(totalPages0);
-        console.log("-------TotalPageMount----");
-        console.log(totalPages);
-        props.setProgress(100);
-        console.log("-------Pagenext----");
-        console.log(page);
-    }
-
-    const handleclickprev = async () => {
-        console.log("prev button clicked");
-        props.setProgress(20);
-        setPage(page-1);
-        setLoading(true);
-        let url = `https://newsapi.org/v2/top-headlines?country=us&category=${props.category}&apiKey=c2d923d97950457ea05e70112b869de1&page=${page-1}&pageSize=20`;
-        let data = await fetch(url);
-        props.setProgress(40);
-        let parsedData = await data.json()
-        console.log(parsedData); 
-        let totalPages0=Math.ceil(parsedData.totalResults/20);
-        setLoading(false);
-        props.setProgress(80);
-        setArticles(parsedData.articles);
-        setTotalPages(totalPages0);
-        console.log("-------TotalPageMount----");
-        console.log(totalPages);
-        props.setProgress(100);
-        console.log("-------Pageprev----");
-        console.log(page);
-    }
+   
 
     const fetchData = async () => {
         setLoading(true);
+        props.setProgress(20);
+        let url = `https://newsapi.org/v2/top-headlines?country=in&category=${props.category}&apiKey=c2d923d97950457ea05e70112b869de1&page=${page+1}&pageSize=20`;
         setPage(page+1);
-        let url = `https://newsapi.org/v2/top-headlines?country=us&category=${props.category}&apiKey=c2d923d97950457ea05e70112b869de1&page=${page}&pageSize=20`;
         let data = await fetch(url);
+        props.setProgress(40);
         let parsedData = await data.json()
+        props.setProgress(60);
         console.log(parsedData); 
         let totalPages0=Math.ceil(parsedData.totalResults/20);
         setArticles(articles.concat(parsedData.articles));
+        props.setProgress(60);
         setLoading(false);
-        setPage(page);
+        setTotalResults(parsedData.totalResults);
+        props.setProgress(100);
         setTotalPages(totalPages0);
-        console.log("-------fetchdata----");
-        console.log(totalPages);
-        console.log(loading);
+        console.log("-------articlesLength----");
+        console.log(articles.length);
+        console.log(totalResults);
     }
 
 
@@ -109,17 +72,17 @@ const News = (props) => {
             <h2>Top Articles from {props.category}</h2>
           </div>
                 {loading && <Spinner />}
-                {/* <InfiniteScroll
+                <InfiniteScroll
                     dataLength={articles.length} //This is important field to render the next data
                     next={fetchData}
-                    hasMore={page<=totalPages?true:false}
+                    hasMore={articles.length !== totalResults}
                     loader={<Spinner/>}
                     endMessage={
                         <p style={{ textAlign: 'center' }}>
                             <b>Yay! You have seen it all</b>
                         </p>
                     }
-                    > */}
+                    >
                 <div className='row'>
                     {articles.map((element) => {
                         return <div className='col-md-4' key={element.url} style={{margin: '10px 0px 10px 0px'}}>
@@ -127,11 +90,11 @@ const News = (props) => {
                         </div>
                     })}
                 </div>
-                <div className="container d-flex justify-content-between">
+                {/* <div className="container d-flex justify-content-between">
                      <button type="button" disabled={page<=1?true:false} onClick={handleclickprev} className="btn" style={{ display: 'flex', marginRight: '14px', marginBottom: '10px' }}>Prev</button>
                      <button type="button" disabled={page>=totalPages?true:false} onClick={handleclicknext} className="btn" style={{ display: 'flex', marginRight: '14px', marginBottom: '10px' }}>Next</button>
-                </div>
-                {/* </InfiniteScroll> */}
+                </div> */}
+                </InfiniteScroll>
             </div >
         )
 }
